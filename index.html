@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TypeBlaze</title>
+
+    <link rel="stylesheet"
+          href="speedstyle.css">
+
+</head>
+
+<body>
+
+    <div class="typing-container">
+
+        <h1>⌨ TypeBlaze</h1>
+
+        <div class="stats-box">
+
+            <div>
+                Time:
+                <span id="timeValue">60</span>s
+            </div>
+
+            <div>
+                WPM:
+                <span id="wpmValue">0</span>
+            </div>
+
+            <div>
+                Accuracy:
+                <span id="accuracyValue">100</span>%
+            </div>
+
+        </div>
+
+        <div id="textDisplay"
+             class="text-display">
+
+        </div>
+
+        <textarea id="typingInput"
+                  placeholder="Start typing here...">
+
+        </textarea>
+
+        <button onclick="restartTest()">
+            Restart Test
+        </button>
+
+    </div>
+
+    <script src="typinglogic.js"></script>
+
+</body>
+
+</html>
