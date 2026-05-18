@@ -1,10 +1,3 @@
-const sampleText =
-
-`Technology is evolving rapidly and developers
-must continuously improve their programming,
-problem solving and logical thinking skills
-to build innovative real world applications.`;
-
 const textDisplay =
 document.getElementById("textDisplay");
 
@@ -20,13 +13,47 @@ document.getElementById("wpmValue");
 const accuracyValue =
 document.getElementById("accuracyValue");
 
-textDisplay.innerText = sampleText;
+let currentParagraph = "";
 
 let timer = 60;
 
 let started = false;
 
 let interval;
+
+async function loadRandomParagraph() {
+
+    try {
+
+        const response =
+        await fetch(
+        "https://api.quotable.io/random"
+        );
+
+        const data =
+        await response.json();
+
+        currentParagraph =
+        data.content;
+
+        textDisplay.innerText =
+        currentParagraph;
+
+    }
+
+    catch (error) {
+
+        currentParagraph =
+        "Typing test failed to load text.";
+
+        textDisplay.innerText =
+        currentParagraph;
+
+    }
+
+}
+
+loadRandomParagraph();
 
 typingInput.addEventListener("input", () => {
 
@@ -77,7 +104,7 @@ function calculateResults() {
 
     for (let i = 0; i < typedText.length; i++) {
 
-        if (typedText[i] === sampleText[i]) {
+        if (typedText[i] === currentParagraph[i]) {
 
             correctCharacters++;
 
@@ -87,7 +114,9 @@ function calculateResults() {
 
     const accuracy =
     Math.floor(
+
         (correctCharacters / typedText.length) * 100
+
     ) || 0;
 
     accuracyValue.innerText =
@@ -112,5 +141,7 @@ function restartTest() {
     wpmValue.innerText = 0;
 
     accuracyValue.innerText = 100;
+
+    loadRandomParagraph();
 
 }
